@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "shape": "triangle",
+    "dimension": {
+      "a": 2,
+      "b": 3,
+      "c": 2
+    },
+    "result": 8.25,
+    "createdAt": "2021-05-07T22:52:35.720Z"
+  },
+  {
+    "id": 3,
+    "shape": "triangle",
+    "dimension": {
+      "a": 2,
+      "b": 3,
+      "c": 2
+    },
+    "result": 1.06,
+    "createdAt": "2021-05-07T22:54:11.770Z"
+  },
+  {
+    "id": 4,
+    "shape": "triangle",
+    "dimension": {
+      "a": 2,
+      "b": 3,
+      "c": 2
+    },
+    "result": 1.06,
+    "createdAt": "2021-05-07T22:57:23.736Z"
+  },
+  {
+    "id": 5,
+    "shape": "triangle",
+    "dimension": {
+      "a": 4,
+      "b": 4,
+      "c": 4
+    },
+    "result": 4.69,
+    "createdAt": "2021-05-07T23:02:45.441Z"
+  },
+  {
+    "id": 6,
+    "shape": "triangle",
+    "dimension": {
+      "a": 4,
+      "b": 4,
+      "c": 2
+    },
+    "result": 1.41,
+    "createdAt": "2021-05-07T23:03:17.184Z"
+  },
+  {
+    "id": 7,
+    "shape": "triangle",
+    "dimension": {
+      "a": 4,
+      "b": 4,
+      "c": 2
+    },
+    "result": 1.41,
+    "createdAt": "2021-05-07T23:08:29.037Z"
+  },
+  {
+    "id": 8,
+    "shape": "triangle",
+    "dimension": {
+      "a": 4,
+      "b": 4,
+      "c": 2
+    },
+    "result": 3.87,
+    "createdAt": "2021-05-07T23:09:09.169Z"
+  },
+  {
+    "id": 9,
+    "shape": "triangle",
+    "dimension": {
+      "a": 2,
+      "b": 3,
+      "c": 2
+    },
+    "result": 1.98,
+    "createdAt": "2021-05-07T23:09:31.255Z"
+  }
+]

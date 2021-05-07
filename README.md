@@ -39,7 +39,7 @@ The application can be tested locally through localhost
 | GET   | /fetchRecords | Fetch all my previously computated data |
 
 ## NB:
-To calculate for the area of a triangle. 
+To calculate for the area of a triangle.
 ```
 {
 "shape": string,
