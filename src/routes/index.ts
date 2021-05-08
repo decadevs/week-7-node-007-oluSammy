@@ -10,7 +10,8 @@ router.get('/', (req: Request, res: Response, next: NextFunction) => {
   res.send('home');
 });
 
-router.get('/calculate', (req: Request, res: Response, next: NextFunction) => {
+
+router.post('/calculate', (req: Request, res: Response, next: NextFunction) => {
   const shape: string = req.body.shape.toLocaleLowerCase();
 
   const shapesArr = ['square', 'circle', 'rectangle', 'triangle'];

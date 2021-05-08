@@ -1,1 +1,1 @@
-web: node task-two/bin/www
+web: node ./bin/www

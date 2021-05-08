@@ -47,7 +47,7 @@ var router = express_1.default.Router();
 router.get('/', function (req, res, next) {
     res.send('home');
 });
-router.get('/calculate', function (req, res, next) {
+router.post('/calculate', function (req, res, next) {
     var shape = req.body.shape.toLocaleLowerCase();
     var shapesArr = ['square', 'circle', 'rectangle', 'triangle'];
     if (shapesArr.includes(req.body.shape.toLocaleLowerCase())) {
