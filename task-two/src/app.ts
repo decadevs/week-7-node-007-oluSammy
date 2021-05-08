@@ -5,7 +5,6 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
 import calculateRouter from './routes';
-import fetchRecords from './routes/fetchRecords';
 
 const app = express();
 
