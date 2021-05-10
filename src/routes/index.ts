@@ -10,14 +10,13 @@ router.get('/', (req: Request, res: Response, next: NextFunction) => {
   res.send('home');
 });
 
-
 router.post('/calculate', (req: Request, res: Response, next: NextFunction) => {
   const shape: string = req.body.shape.toLocaleLowerCase();
 
   const shapesArr = ['square', 'circle', 'rectangle', 'triangle'];
 
   if (shapesArr.includes(req.body.shape.toLocaleLowerCase())) {
-    calcResult(req, res, next);
+    calcResult(req, res);
   } else {
     return res.status(400).json({
       status: 'fail',
@@ -29,9 +28,10 @@ router.post('/calculate', (req: Request, res: Response, next: NextFunction) => {
 router.get(
   '/fetchRecords',
   async (req: Request, res: Response, next: NextFunction) => {
+    const data = await readDb();
     res.status(200).json({
-      status: 200,
-      data: await readDb(),
+      status: 'success',
+      data: data.data,
     });
   }
 );

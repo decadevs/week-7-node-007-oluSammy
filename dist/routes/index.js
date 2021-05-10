@@ -51,7 +51,7 @@ router.post('/calculate', function (req, res, next) {
     var shape = req.body.shape.toLocaleLowerCase();
     var shapesArr = ['square', 'circle', 'rectangle', 'triangle'];
     if (shapesArr.includes(req.body.shape.toLocaleLowerCase())) {
-        calculate_1.calcResult(req, res, next);
+        calculate_1.calcResult(req, res);
     }
     else {
         return res.status(400).json({
@@ -61,19 +61,16 @@ router.post('/calculate', function (req, res, next) {
     }
 });
 router.get('/fetchRecords', function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, _b;
-    var _c;
-    return __generator(this, function (_d) {
-        switch (_d.label) {
-            case 0:
-                _b = (_a = res.status(200)).json;
-                _c = {
-                    status: 200
-                };
-                return [4 /*yield*/, calculate_1.readDb()];
+    var data;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, calculate_1.readDb()];
             case 1:
-                _b.apply(_a, [(_c.data = _d.sent(),
-                        _c)]);
+                data = _a.sent();
+                res.status(200).json({
+                    status: 'success',
+                    data: data.data,
+                });
                 return [2 /*return*/];
         }
     });

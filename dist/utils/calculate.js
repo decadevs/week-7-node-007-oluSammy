@@ -46,15 +46,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.readDb = exports.calcResult = void 0;
 var fs_1 = __importDefault(require("fs"));
-var dbPath = __dirname + "/../database.json";
-var calcResult = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+var dbPath = process.env.NODE_ENV === 'test'
+    ? __dirname + "/../database-test.json"
+    : __dirname + "/../database.json";
+var calcResult = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var result, db, data, allData, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 2, , 3]);
+                _a.trys.push([0, 3, , 4]);
                 result = 0;
-                console.log(req.body.dimension);
                 req.body.shape === 'square' ? (result = calcSquare(req.body.dimension)) : 0;
                 req.body.shape === 'circle' ? (result = calcCircle(req.body.dimension)) : 0;
                 req.body.shape === 'triangle'
@@ -63,6 +64,7 @@ var calcResult = function (req, res, next) { return __awaiter(void 0, void 0, vo
                 req.body.shape == 'rectangle'
                     ? (result = calcRectangle(req.body.dimension))
                     : 0;
+                if (!(result && result > 1)) return [3 /*break*/, 2];
                 return [4 /*yield*/, exports.readDb()];
             case 1:
                 db = _a.sent();
@@ -75,39 +77,52 @@ var calcResult = function (req, res, next) { return __awaiter(void 0, void 0, vo
                 };
                 allData = __spreadArray(__spreadArray([], db.data), [data]);
                 writeToDb(allData);
-                res.status(200).json({
-                    status: 'success',
-                    data: data,
-                });
-                return [3 /*break*/, 3];
+                return [2 /*return*/, res.status(201).json({
+                        status: 'success',
+                        data: data,
+                    })];
             case 2:
+                res.status(400).json({
+                    status: 'fail',
+                    message: 'invalid dimension',
+                });
+                return [3 /*break*/, 4];
+            case 3:
                 error_1 = _a.sent();
                 res.status(400).json({
                     status: 'fail',
-                    message: 'an error occurred',
+                    message: 'invalid dimension',
                 });
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
         }
     });
 }); };
 exports.calcResult = calcResult;
 var calcSquare = function (dimension) {
+    if (typeof dimension !== 'number')
+        throw new Error('invalid dimension');
     return dimension * dimension;
 };
 var calcCircle = function (dimension) {
+    if (typeof dimension !== 'number')
+        throw new Error('invalid dimension');
     return +(Math.PI * dimension * dimension).toFixed(2);
 };
 var calcRectangle = function (dimension) {
+    if (typeof dimension.a !== 'number' || typeof dimension.b !== 'number')
+        throw new Error('invalid dimension');
     return dimension.a * dimension.b;
 };
 var calcTriangle = function (dimension) {
     var a = dimension.a, b = dimension.b, c = dimension.c;
+    if (typeof a !== 'number' || typeof b !== 'number' || typeof c !== 'number')
+        throw new Error('invalid dimension');
     var s = (a + b + c) / 2;
-    return +Math.sqrt(s * (s - a) * (s - b) * (s - c)).toFixed(2);
+    return +Math.sqrt(s * ((s - a) * (s - b) * (s - c))).toFixed(2);
 };
 var readDb = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var db, data, e_1;
+    var db, data, error_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -121,7 +136,7 @@ var readDb = function () { return __awaiter(void 0, void 0, void 0, function () 
                         id: data.length + 1,
                     }];
             case 2:
-                e_1 = _a.sent();
+                error_2 = _a.sent();
                 return [2 /*return*/, {
                         data: [],
                         id: 0,
